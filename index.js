@@ -29,13 +29,21 @@ app.post('/messages', function(req, res) {
 
 app.put('/messages/:msdId', function(req, res) {
     var params = req.body
-    messages[req.params.msdId] = params.message;
-    return res.status(200).send("Ok");
+    if (messages.hasOwnProperty(req.params.msdId)){
+        messages[req.params.msdId] = params.message;
+        return res.status(200).send("Ok");
+    }else{
+        return res.status(200).send("NotFound");
+    }
 });
 
 app.delete('/messages/:msdId', function(req, res) {
-    delete messages[req.params.msdId]
-    return res.status(200).send("Ok");
+    if (messages.hasOwnProperty(req.params.msdId)){
+        delete messages[req.params.msdId]
+        return res.status(200).send("Ok");
+    }else{
+        return res.status(200).send("NotFound");
+    }
 });
 
 
