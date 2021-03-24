@@ -15,7 +15,7 @@ var counter = 3;
 
 
 
-//URLS
+//EndPoints
 app.get('/messages', function(req, res) {
     return res.status(200).send(messages);
 });
@@ -33,7 +33,7 @@ app.put('/messages/:msdId', function(req, res) {
         messages[req.params.msdId] = params.message;
         return res.status(200).send("Ok");
     }else{
-        return res.status(200).send("NotFound");
+        return res.status(404).send("NotFound");
     }
 });
 
@@ -42,7 +42,7 @@ app.delete('/messages/:msdId', function(req, res) {
         delete messages[req.params.msdId]
         return res.status(200).send("Ok");
     }else{
-        return res.status(200).send("NotFound");
+        return res.status(404).send("NotFound");
     }
 });
 
